@@ -14,10 +14,11 @@ const IncomeExp = ({ transactions }) => {
   return (
     <Box
       sx={{
-        padding: 3,
+        paddingTop:3,
+        paddingX:3,
         display: "flex",
         flexDirection: "row",
-        gap: 4, // Adjust the gap between cards
+        gap: 2, // Adjust the gap between cards
         justifyContent: "center",
       }}
     >

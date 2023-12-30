@@ -1,4 +1,4 @@
-import { Alert, Box, Typography } from "@mui/material";
+import {Box, Typography } from "@mui/material";
 import React from "react";
 
 const Balance = ({ transactions }) => {
@@ -19,13 +19,17 @@ const Balance = ({ transactions }) => {
         <Typography variant="h5">Balance:</Typography>
         <Typography variant="h4">₹ {balance}</Typography>
       </Box>
-      <Box>
-        {balance > 0 ? (
-          <Alert severity="success">You have some more money</Alert>
-        ) : balance < 0 ? (
-          <Alert severity="error">You are in Loss.</Alert>
-        ) : null}
-      </Box>
+      {/* <Box style={{ zIndex: 1000 }}>
+        {showAlert && (
+          <>
+            {balance > 0 ? (
+              <Alert severity="success">You have some more money</Alert>
+            ) : balance < 0 ? (
+              <Alert severity="error">You are in Loss.</Alert>
+            ) : null}
+          </>
+        )}
+      </Box> */}
     </>
   );
 };

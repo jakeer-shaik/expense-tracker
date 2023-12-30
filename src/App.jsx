@@ -14,74 +14,74 @@ function App() {
   useEffect(() => {
     const delay = setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 3000);
     return () => clearTimeout(delay);
   }, []);
 
   return (
     <>
-      {
-        isLoading ? <Loading /> : (
-          <Container>
-        <Box
-          sx={{
-            marginX: "auto",
-            borderRadius: 6,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            boxShadow: 8,
-            height: { md: "95vh", sm: "fit-content" },
-            textAlign: "center",
-          }}
-        >
-          <Typography
-            variant="h4"
-            sx={{
-              padding: 2,
-              marginTop: 3,
-              fontStyle: "oblique",
-              fontWeight: "medium",
-            }}
-          >
-            Expense Tracker
-          </Typography>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Container>
           <Box
             sx={{
+              marginX: "auto",
+              borderRadius: 6,
               display: "flex",
-              flexDirection: { md: "row", sm: "column", xs: "column" },
-              width: "100%",
+              flexDirection: "column",
+              justifyContent: "center",
+              boxShadow: { md: 8, sm: 0 },
+              height: { md: "95vh", sm: "fit-content" },
+              textAlign: "center",
             }}
           >
-            <Box sx={{ width: { md: "30%", sm: "100%" } }}>
-              <Balance transactions={transactions} />
-              <IncomeExp transactions={transactions} />
-              <NewTransaction setTransactions={setTransactions} />
-            </Box>
+            <Typography
+              variant="h4"
+              sx={{
+                padding: 2,
+                marginTop: 3,
+                fontStyle: "oblique",
+                fontWeight: "medium",
+              }}
+            >
+              Expense Tracker
+            </Typography>
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "column",
-                width: { sm: "100%", md: "70%" },
+                flexDirection: { md: "row", sm: "column", xs: "column" },
+                width: "100%",
               }}
             >
-              <Box sx={{}}>
-                {transactions.length > 0 ? (
-                  <Box>
-                    <TransactionChart transactions={transactions} />
-                  </Box>
-                ) : null}
-                <AllTransactions
-                  transactions={transactions}
-                  setTransactions={setTransactions}
-                />
+              <Box sx={{ width: { md: "30%", sm: "100%" } }}>
+                <Balance transactions={transactions} />
+                <IncomeExp transactions={transactions} />
+                <NewTransaction setTransactions={setTransactions} />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  width: { sm: "100%", md: "70%" },
+                }}
+              >
+                <Box sx={{}}>
+                  {transactions.length > 0 ? (
+                    <Box>
+                      <TransactionChart transactions={transactions} />
+                    </Box>
+                  ) : null}
+                  <AllTransactions
+                    transactions={transactions}
+                    setTransactions={setTransactions}
+                  />
+                </Box>
               </Box>
             </Box>
           </Box>
-        </Box>
-      </Container>
-        )
-      }
+        </Container>
+      )}
     </>
   );
 }

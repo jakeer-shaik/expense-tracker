@@ -1,4 +1,6 @@
 import {
+  Alert,
+  AlertTitle,
   Box,
   Button,
   Card,
@@ -20,75 +22,87 @@ const AllTransactions = ({ transactions, setTransactions }) => {
   };
 
   return (
-    <Box sx={{ padding: 3, marginX: 'auto' }}>
-  <Typography variant="h6">Transaction History:</Typography>
-  <List
-    sx={{
-      height: "fit-content",
-      display: "flex",
-      justifyContent: "start",
-      overflowX: "scroll",
-      "::-webkit-scrollbar": { display: "none" },
-    }}
-  >
-    {transactions.length ? (
-      transactions.map((item) => {
-        return (
-          <Card
-            sx={{
-              minWidth: 200,
-              marginX: 2,
-              backgroundColor: '#aaf0d1',
-              color: "#004953",
-            }}
-            key={item.id}
-          >
-            <CardContent>
-              <Typography variant="h5" component="div" sx={{textTransform:'capitalize'}}>
-                {item.title}
-              </Typography>
-              <Typography variant="h6">Amount</Typography>
-              <Typography
-                variant="h6"
-                sx={{ color: item.amount > 0 ? "#228b22" : "red" }}
-              >
-                ₹  {item.amount}
-              </Typography>
-            </CardContent>
-            <CardActions
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Button
-                variant="contained"
-                startIcon={<DeleteIcon />}
-                sx={{ textTransform: 'unset',bgcolor:'#29ab87' }}
-                onClick={() => handlerDelete(item.id)}
-                size="small"
-              >
-                Delete
-              </Button>
-            </CardActions>
-          </Card>
-        );
-      })
-    ) : (
-      <ListItem
+    <Box sx={{ padding: 3, marginX: "auto" }}>
+      <Typography variant="h6">Transaction History:</Typography>
+      <List
         sx={{
-          bgcolor: "#36454F",
-          color: "white",
-          marginY: 0.5,
-          borderRadius: 3,
+          height: "fit-content",
+          display: "flex",
+          justifyContent: "start",
+          overflowX: "scroll",
+          "::-webkit-scrollbar": { display: "none" },
         }}
       >
-        <ListItemText primary="You don't have any transactions." />
-      </ListItem>
-    )}
-  </List>
-</Box>
-
+        {transactions.length ? (
+          transactions.map((item) => {
+            return (
+              <Card
+                sx={{
+                  minWidth: 200,
+                  marginX: 2,
+                  backgroundColor: "#aaf0d1",
+                  color: "#004953",
+                }}
+                key={item.id}
+              >
+                <CardContent>
+                  <Typography
+                    variant="h5"
+                    component="div"
+                    sx={{ textTransform: "capitalize" }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <Typography variant="h6">Amount</Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{ color: item.amount > 0 ? "#228b22" : "red" }}
+                  >
+                    ₹ {item.amount}
+                  </Typography>
+                </CardContent>
+                <CardActions
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Button
+                    variant="contained"
+                    startIcon={<DeleteIcon />}
+                    sx={{ textTransform: "unset", bgcolor: "#29ab87" }}
+                    onClick={() => handlerDelete(item.id)}
+                    size="small"
+                  >
+                    Delete
+                  </Button>
+                </CardActions>
+              </Card>
+            );
+          })
+        ) : (
+          <>
+            <Box
+              sx={{ display: "flex", flexDirection: "column", width: "100%" }}
+            >
+              <ListItem
+                sx={{
+                  bgcolor: "#36454F",
+                  color: "white",
+                  marginY: 0.5,
+                  borderRadius: 3,
+                }}
+              >
+                <ListItemText primary="You don't have any transactions." />
+              </ListItem>
+              <Alert severity="warning">
+                Mention <strong>Negative Sign "-"</strong> for Expenses
+              </Alert>
+            </Box>
+          </>
+        )}
+      </List>
+    </Box>
   );
 };
 
